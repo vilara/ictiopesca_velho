@@ -11,6 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
+Route::resource('/especies','pescEspecieController');
+Route::get('/','PagesController@welcome');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
