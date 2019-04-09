@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\pesc_especie;
 
 class pescEspecieController extends Controller
 {
@@ -13,7 +14,8 @@ class pescEspecieController extends Controller
      */
     public function index()
     {
-        //
+    	$especies = pesc_especie::all();
+    	return view('especie.index', compact('especies'));
     }
 
     /**
@@ -23,7 +25,7 @@ class pescEspecieController extends Controller
      */
     public function create()
     {
-        //
+    	return view('especie.create');
     }
 
     /**
@@ -34,7 +36,10 @@ class pescEspecieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    	$especie = new pesc_especie();
+    	$especie->cat = $request->cat;    	
+    	$especie->save();
+    	return redirect('/especies')->with('success', 'Espécie inserida com sucesso!');
     }
 
     /**
@@ -45,7 +50,8 @@ class pescEspecieController extends Controller
      */
     public function show($id)
     {
-        //
+    	$especie = pesc_especie::find($id);
+    	return view('especie.show', compact('especie'));
     }
 
     /**
@@ -56,7 +62,8 @@ class pescEspecieController extends Controller
      */
     public function edit($id)
     {
-        //
+    	$especie = pesc_especie::find($id);
+    	return view('especie.edit', compact('especie'));
     }
 
     /**
@@ -68,7 +75,10 @@ class pescEspecieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    	$especie = pesc_especie::find($id);
+    	$especie->cat = $request->cat;
+    	$especie->save();
+    	return redirect('/especies')->with('success', 'Espécie Editada com sucesso!');
     }
 
     /**
@@ -79,6 +89,9 @@ class pescEspecieController extends Controller
      */
     public function destroy($id)
     {
-        //
+    	$especie = pesc_especie::find($id);
+    	$especie->delete();
+    	return redirect('/especies')->with('success', 'Espécie excluídaa com sucesso!');
+    	
     }
 }

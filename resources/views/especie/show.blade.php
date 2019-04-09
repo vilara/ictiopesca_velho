@@ -1,5 +1,5 @@
 @extends('layouts.app') 
-@section('title','Usuários') 
+@section('title','Espécies') 
 @section('content')
 
 
@@ -8,18 +8,18 @@
 <div class="container">
 	<div class="row justify-content-center">
 
-		<div class="col-md-8">
+		<div class="col-md-4">
 
 			<div class="card">
 
 				<div class="card-header">
 					<div class="row">
-						<div class="col-md-9">
-							<h3 id="p1">{{ __('Usuário') }}</h3>
+						<div class="col-md-5">
+							<h3 id="p1">{{ __('Espécie') }}</h3>
 						</div>
-						<div class="col-md-3 py-auto">
-							<a href="../usuarios/store" class="btn btn-success">Editar</a> <a
-								href="../usuarios" class="btn btn-success float-right">Voltar</a>
+						<div class="col-md-7 py-auto">
+							<a href="{{ route('especies.edit',$especie->id) }}" class="btn btn-success">Editar</a> <a
+								href="{{ route('especies.index') }}" class="btn btn-success float-right">Voltar</a>
 						</div>
 					</div>
 				</div>
@@ -29,19 +29,13 @@
 						<thead class="thead-soft">
 							<tr>
 								<th scope="col">ID</th>
-								<th scope="col">Nome</th>
-								<th scope="col">Função</th>
-								<th scope="col">E-mail</th>
-								<th scope="col">Ações</th>
+								<th scope="col">Categoria</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<th scope="row">{{ $usuarios->id }}</th>
-								<td>{{ $usuarios->name }}</td>
-								<td>{{ $usuarios->funcoe['nomeFuncao'] }}</td>
-								<td>{{ $usuarios->email }}</td>
-								<td></td>
+								<th scope="row">{{ $especie->id }}</th>
+								<td>{{ $especie->cat }}</td>
 							</tr>
 						</tbody>
 					</table>

@@ -1,4 +1,6 @@
-@extends('layouts.app') @section('title','Usuários') @section('content')
+@extends('layouts.app') @section('title','Espécies') @section('content')
+
+
 
 
 
@@ -12,10 +14,10 @@
 				<div class="card-header">
 					<div class="row">
 						<div class="col-md-10">
-							<h3>{{ __('Usuários') }}</h3>
+							<h3>{{ __('Espécies') }}</h3>
 						</div>
 						<div class="col-md-2 py-auto">
-							<a href="../usuarios/create" class="btn btn-success">Novo</a>
+							<a href="/especies/create" class="btn btn-success">Novo</a>
 						</div>
 					</div>
 				</div>
@@ -31,57 +33,28 @@
 							<tr>
 								<th scope="col">ID</th>
 								<th scope="col">Nome</th>
-								<th scope="col">Função</th>
-								<th scope="col">E-mail</th>
-								<th scope="col">Perfil</th>
-								<th scope="col">OM</th>
-								<th scope="col">Endereço</th>
-								<th scope="col">Telefone</th>
 								<th scope="col">Ações</th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($user as $usuario)
+							@foreach ($especies as $especie)
 							<tr>
-								<th scope="row">{{ $usuario->id }}</th>
-								<td><a href="{{ '/usuarios/'.$usuario->id}}"
-									style="color: inherit;">{{ $usuario->name }}</a></td>
-								<td>{{ $usuario->funcoe['nomeFuncao'] }}</td>
-								<td>{{ $usuario->email }}</td>
+								<th scope="row">{{ $especie->id }}</th>
+								<td><a href="{{ route('especies.show',$especie->id) }}"
+									style="color: inherit;">{{ $especie->cat }}</a></td>
 
-								<td>@foreach ($usuario->perfils as $perfil) {{ $perfil->tipo }}
-									@endforeach</td>
-								<td>{{ $usuario->om['siglaOm'] }}</td>
-
-								<td>@foreach ($usuario->enderecos as $end)
-										<center><a href="{{ route('enderecos.edit',$end->id) }}" style="color: inherit;"><i class="fas fa-home"></i></a></center>
-										
-									@endforeach
-								</td>
-								
-								@if(empty($usuario->enderecos))
-								<td>teste</td>
-								@endif
-								
-								<td>@foreach ($usuario->telefones as $tel)
-								@if($tel->id > 0)
-										<center><a href="{{ route('telefones.show', $tel->id) }}" style="color: inherit;"><i class="fas fa-phone"></i></a></center>
-								@else
-								
-								@endif	
-									@endforeach
-								</td>
 
 
 								<td>
 									<div class="row">
 										<div class="col-md-6 mt-1">
-											<a href="{{ route('usuarios.edit',$usuario->id) }}" style="color: inherit;"><i class="far fa-edit"></i></a>
+											<a href="{{ route('especies.edit',$especie->id) }}" style="color: inherit;"><i class="far fa-edit"></i></a>
 										</div>
 
 										<div class="col-md-6  text-lg-left pl-1">
-											<form class="form-group" action="{{ route('usuarios.destroy',$usuario->id) }}"	method="post">
-												@csrf @method('DELETE')
+											<form class="form-group" action="{{ route('especies.destroy',$especie->id) }}"	method="post">
+												@csrf
+												 @method('DELETE')
 												<button class="btn form-control" type="submit"><i class="far fa-trash-alt"></i></button>
 											</form>
 										</div>

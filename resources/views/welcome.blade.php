@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Consultas</a>
+                    <a href="{{ url('/especies') }}">Consultas</a>
                    
                 </div>
             </div>
